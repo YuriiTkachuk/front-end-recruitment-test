@@ -76,4 +76,13 @@
   }
 
   // Your custom JavaScript goes here
+
+  if (window.location.pathname.includes('submodule')) {
+    document.getElementById('baconClick').addEventListener('click', function() {
+      const item = document.getElementById('baconImg');
+      const clone = item.cloneNode(true);
+      document.getElementById('baconImg').parentElement.appendChild(clone)
+    });
+  }
+
 })();
