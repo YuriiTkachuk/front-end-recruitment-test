@@ -85,4 +85,43 @@
     });
   }
 
+  if (window.location.pathname.includes('checkout')) {
+    const ids = [
+      'first-name',
+      'last-name',
+      'email',
+      'country',
+      'postal-code',
+      'phone-number',
+      'card-number',
+      'security-code',
+      'expiration-date',
+    ];
+    ids.forEach((id) => {
+      const input = document.getElementById(`${id}-input`);
+      input.addEventListener('change', function(e) {
+        const element = document.getElementById(id);
+        const isError = element.className.includes('checkout-error');
+        if (e.target.value && isError) {
+          element.className = 'checkout-input';
+        }
+      });
+    });
+
+    document.getElementById('purchase').addEventListener('click', function() {
+      let isError = false;
+      ids.forEach((id) => {
+        const element = document.getElementById(id);
+        const input = document.getElementById(`${id}-input`);
+        if (!input.value) {
+          element.classList.add('checkout-error');
+          isError = true;
+        }
+      });
+
+      if (!isError) {
+        alert('good');
+      }
+    });
+  }
 })();
